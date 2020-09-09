@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "DEQ_GADS_2020"
