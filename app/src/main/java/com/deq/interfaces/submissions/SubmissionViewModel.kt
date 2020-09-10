@@ -1,5 +1,6 @@
 package com.deq.interfaces.submissions
 
+import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,12 +25,13 @@ class SubmissionViewModel @ViewModelInject constructor(val repository: ApiReposi
 
 
     fun makeSubmission(email: String, name: String, lastName: String, githubLink: String) {
-        _loadingStatus.value = LoadingStatus.Loading("making your Submission ...")
+        _loadingStatus.value = LoadingStatus.Loading("Submitting work ...")
         viewModelScope.launch {
             when (val result = repository.makeSubmission(email, name, lastName, githubLink)) {
                 is Result.Success -> {
                     _success.value = true
                     _loadingStatus.value = LoadingStatus.Success
+                    Log.d("TAG","Successful");
                 }
                 is Result.Error -> {
                     _success.value = false
