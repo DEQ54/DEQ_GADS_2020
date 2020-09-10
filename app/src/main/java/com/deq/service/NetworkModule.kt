@@ -24,7 +24,6 @@ class NetworkModule {
         return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     }
 
-
     @Provides
     @Named("baseUrl")
     fun provideBaseUrl(): String {
